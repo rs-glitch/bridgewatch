@@ -1,0 +1,171 @@
+{
+ "decision_year": 2017,
+ "h": 4,
+ "bridges": 539140,
+ "events": 18327,
+ "event_exposure": 365884397.0,
+ "total_cost_all": 926783781622.219,
+ "results": [
+  {
+   "budget": 100000000.0,
+   "strategy": "worst_first",
+   "treated": 32,
+   "events_covered": 2,
+   "exposure_covered": 72999.99999999999,
+   "spent": 99996861.88565499
+  },
+  {
+   "budget": 100000000.0,
+   "strategy": "traffic_first",
+   "treated": 26,
+   "events_covered": 0,
+   "exposure_covered": 0.0,
+   "spent": 99991065.31883812
+  },
+  {
+   "budget": 100000000.0,
+   "strategy": "risk_first",
+   "treated": 87,
+   "events_covered": 24,
+   "exposure_covered": 294385.0,
+   "spent": 99990006.12955032
+  },
+  {
+   "budget": 100000000.0,
+   "strategy": "value_per_dollar",
+   "treated": 295,
+   "events_covered": 71,
+   "exposure_covered": 27232468.999999996,
+   "spent": 99999958.09565665
+  },
+  {
+   "budget": 100000000.0,
+   "strategy": "value_per_dollar_baseline_risk",
+   "treated": 332,
+   "events_covered": 15,
+   "exposure_covered": 19148504.000000004,
+   "spent": 99981586.90835953
+  },
+  {
+   "budget": 500000000.0,
+   "strategy": "worst_first",
+   "treated": 201,
+   "events_covered": 23,
+   "exposure_covered": 327902.0,
+   "spent": 499980289.003986
+  },
+  {
+   "budget": 500000000.0,
+   "strategy": "traffic_first",
+   "treated": 55,
+   "events_covered": 0,
+   "exposure_covered": 0.0,
+   "spent": 499997624.54049176
+  },
+  {
+   "budget": 500000000.0,
+   "strategy": "risk_first",
+   "treated": 479,
+   "events_covered": 193,
+   "exposure_covered": 3101798.0,
+   "spent": 499997193.57976925
+  },
+  {
+   "budget": 500000000.0,
+   "strategy": "value_per_dollar",
+   "treated": 1180,
+   "events_covered": 253,
+   "exposure_covered": 53021399.0,
+   "spent": 499997603.167692
+  },
+  {
+   "budget": 500000000.0,
+   "strategy": "value_per_dollar_baseline_risk",
+   "treated": 1471,
+   "events_covered": 54,
+   "exposure_covered": 39061486.00000001,
+   "spent": 499985555.0181719
+  },
+  {
+   "budget": 1000000000.0,
+   "strategy": "worst_first",
+   "treated": 366,
+   "events_covered": 43,
+   "exposure_covered": 790349.9999999999,
+   "spent": 999980644.8238249
+  },
+  {
+   "budget": 1000000000.0,
+   "strategy": "traffic_first",
+   "treated": 96,
+   "events_covered": 0,
+   "exposure_covered": 0.0,
+   "spent": 999995119.4491832
+  },
+  {
+   "budget": 1000000000.0,
+   "strategy": "risk_first",
+   "treated": 845,
+   "events_covered": 372,
+   "exposure_covered": 5436657.999999999,
+   "spent": 999995106.1062528
+  },
+  {
+   "budget": 1000000000.0,
+   "strategy": "value_per_dollar",
+   "treated": 2090,
+   "events_covered": 469,
+   "exposure_covered": 82255679.0,
+   "spent": 999999749.6268795
+  },
+  {
+   "budget": 1000000000.0,
+   "strategy": "value_per_dollar_baseline_risk",
+   "treated": 2669,
+   "events_covered": 93,
+   "exposure_covered": 51073354.0,
+   "spent": 999982372.6967196
+  },
+  {
+   "budget": 5000000000.0,
+   "strategy": "worst_first",
+   "treated": 566,
+   "events_covered": 61,
+   "exposure_covered": 3757233.0000000005,
+   "spent": 4999994751.498326
+  },
+  {
+   "budget": 5000000000.0,
+   "strategy": "traffic_first",
+   "treated": 341,
+   "events_covered": 0,
+   "exposure_covered": 0.0,
+   "spent": 4999999845.216918
+  },
+  {
+   "budget": 5000000000.0,
+   "strategy": "risk_first",
+   "treated": 5676,
+   "events_covered": 2162,
+   "exposure_covered": 30891305.0,
+   "spent": 4999979590.2222595
+  },
+  {
+   "budget": 5000000000.0,
+   "strategy": "value_per_dollar",
+   "treated": 9224,
+   "events_covered": 1763,
+   "exposure_covered": 153069369.0,
+   "spent": 4999990668.070779
+  },
+  {
+   "budget": 5000000000.0,
+   "strategy": "value_per_dollar_baseline_risk",
+   "treated": 9833,
+   "events_covered": 388,
+   "exposure_covered": 103611099.0,
+   "spent": 4999997150.13872
+  }
+ ],
+ "closure_candidates": 57430
+}

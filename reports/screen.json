@@ -1,0 +1,238 @@
+[
+ {
+  "base_year": 2015,
+  "on_24mo": 518462,
+  "miss_rate_all_24mo": 0.20569492074636136,
+  "method1": {
+   "bridges": 218151,
+   "miss_rate": 0.06940605360507171
+  },
+  "model_same_count": {
+   "bridges": 218151,
+   "miss_rate": 0.0349574377380805
+  },
+  "hybrid": {
+   "bridges": 196336,
+   "miss_rate": 0.051360932279357834,
+   "removed_share_of_method1_misses": 0.33399379169143384
+  },
+  "curve_model": [
+   {
+    "share_eligible": 0.05,
+    "bridges": 25923,
+    "miss_rate": 0.006557882961077036
+   },
+   {
+    "share_eligible": 0.1,
+    "bridges": 51846,
+    "miss_rate": 0.011534158855070786
+   },
+   {
+    "share_eligible": 0.2,
+    "bridges": 103692,
+    "miss_rate": 0.02008833854106392
+   },
+   {
+    "share_eligible": 0.3,
+    "bridges": 155539,
+    "miss_rate": 0.025067667916085355
+   },
+   {
+    "share_eligible": 0.4,
+    "bridges": 207385,
+    "miss_rate": 0.033064107818791134
+   },
+   {
+    "share_eligible": 0.5,
+    "bridges": 259231,
+    "miss_rate": 0.04191242559724724
+   },
+   {
+    "share_eligible": 0.6,
+    "bridges": 311077,
+    "miss_rate": 0.051909977272508095
+   }
+  ],
+  "already_on_48mo": {
+   "bridges": 34141,
+   "miss_rate": 0.09686300928502387
+  }
+ },
+ {
+  "base_year": 2017,
+  "on_24mo": 524101,
+  "miss_rate_all_24mo": 0.21077425915997108,
+  "method1": {
+   "bridges": 221154,
+   "miss_rate": 0.07232968881412952
+  },
+  "model_same_count": {
+   "bridges": 221154,
+   "miss_rate": 0.03184658654150502
+  },
+  "hybrid": {
+   "bridges": 199039,
+   "miss_rate": 0.053009711664548154,
+   "removed_share_of_method1_misses": 0.3403975993998499
+  },
+  "curve_model": [
+   {
+    "share_eligible": 0.05,
+    "bridges": 26205,
+    "miss_rate": 0.006296508299942759
+   },
+   {
+    "share_eligible": 0.1,
+    "bridges": 52410,
+    "miss_rate": 0.009349360809005915
+   },
+   {
+    "share_eligible": 0.2,
+    "bridges": 104820,
+    "miss_rate": 0.016876550276664758
+   },
+   {
+    "share_eligible": 0.3,
+    "bridges": 157230,
+    "miss_rate": 0.023118997646759523
+   },
+   {
+    "share_eligible": 0.4,
+    "bridges": 209640,
+    "miss_rate": 0.030137378362907842
+   },
+   {
+    "share_eligible": 0.5,
+    "bridges": 262050,
+    "miss_rate": 0.038790307193283725
+   },
+   {
+    "share_eligible": 0.6,
+    "bridges": 314461,
+    "miss_rate": 0.04977405783229081
+   }
+  ],
+  "already_on_48mo": {
+   "bridges": 37539,
+   "miss_rate": 0.08444551000293028
+  }
+ },
+ {
+  "base_year": 2019,
+  "on_24mo": 524867,
+  "miss_rate_all_24mo": 0.19829975974866013,
+  "method1": {
+   "bridges": 218961,
+   "miss_rate": 0.05722936961376684
+  },
+  "model_same_count": {
+   "bridges": 218961,
+   "miss_rate": 0.02478066870355908
+  },
+  "hybrid": {
+   "bridges": 197065,
+   "miss_rate": 0.03737345545885875,
+   "removed_share_of_method1_misses": 0.4122576011491501
+  },
+  "curve_model": [
+   {
+    "share_eligible": 0.05,
+    "bridges": 26243,
+    "miss_rate": 0.004191593948862554
+   },
+   {
+    "share_eligible": 0.1,
+    "bridges": 52487,
+    "miss_rate": 0.0062491664602663515
+   },
+   {
+    "share_eligible": 0.2,
+    "bridges": 104973,
+    "miss_rate": 0.011136196926828804
+   },
+   {
+    "share_eligible": 0.3,
+    "bridges": 157460,
+    "miss_rate": 0.017102756255556968
+   },
+   {
+    "share_eligible": 0.4,
+    "bridges": 209947,
+    "miss_rate": 0.02383458682429375
+   },
+   {
+    "share_eligible": 0.5,
+    "bridges": 262434,
+    "miss_rate": 0.030609600890128565
+   },
+   {
+    "share_eligible": 0.6,
+    "bridges": 314920,
+    "miss_rate": 0.039155976120919596
+   }
+  ],
+  "already_on_48mo": {
+   "bridges": 40702,
+   "miss_rate": 0.05498501302147315
+  }
+ },
+ {
+  "base_year": 2021,
+  "on_24mo": 522798,
+  "miss_rate_all_24mo": 0.19333662332296603,
+  "method1": {
+   "bridges": 212613,
+   "miss_rate": 0.04903745302497966
+  },
+  "model_same_count": {
+   "bridges": 212613,
+   "miss_rate": 0.022604450339348957
+  },
+  "hybrid": {
+   "bridges": 191352,
+   "miss_rate": 0.03056670429365776,
+   "removed_share_of_method1_misses": 0.438998657203146
+  },
+  "curve_model": [
+   {
+    "share_eligible": 0.05,
+    "bridges": 26140,
+    "miss_rate": 0.003978576893649579
+   },
+   {
+    "share_eligible": 0.1,
+    "bridges": 52280,
+    "miss_rate": 0.006790359602142311
+   },
+   {
+    "share_eligible": 0.2,
+    "bridges": 104560,
+    "miss_rate": 0.011065416985462892
+   },
+   {
+    "share_eligible": 0.3,
+    "bridges": 156839,
+    "miss_rate": 0.01597816869528625
+   },
+   {
+    "share_eligible": 0.4,
+    "bridges": 209119,
+    "miss_rate": 0.02218832339481348
+   },
+   {
+    "share_eligible": 0.5,
+    "bridges": 261399,
+    "miss_rate": 0.02814471363700703
+   },
+   {
+    "share_eligible": 0.6,
+    "bridges": 313679,
+    "miss_rate": 0.03537055397396702
+   }
+  ],
+  "already_on_48mo": {
+   "bridges": 46643,
+   "miss_rate": 0.036254100293720386
+  }
+ }
+]

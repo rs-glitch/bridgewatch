@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BridgeWatch Under Load</title>
+<meta name="description" content="Historic US bridges rebuilt member by member from their original drawings and engineering reports, loaded live in the browser.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23F2DCCB'/><path d='M5 21h22M7 21l4-7h10l4 7M11 14v7M16 14v7M21 14v7' stroke='%232E2230' stroke-width='1.6' fill='none'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Michroma&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="bridges/bridges.css">
+</head>
+<body class="page">
+<header class="top">
+  <div class="brand">
+    <span class="mark" aria-hidden="true"></span>
+    <div>
+      <h1><a href="index.html" class="home">BridgeWatch</a></h1>
+      <p class="sub">Historic bridges rebuilt from their original drawings and loaded in your browser</p>
+    </div>
+  </div>
+  <nav class="tabs" aria-label="Pages">
+    <a href="map.html#map">Map</a>
+    <a href="map.html#list">Risk list</a>
+    <a href="map.html#plan">Budget planner</a>
+    <a href="map.html#interval">Inspection intervals</a>
+    <a href="map.html#right">Was it right?</a>
+    <a href="map.html#method">Method</a>
+    <a href="bridges.html" aria-current="page">Bridges under load</a>
+  </nav>
+</header>
+
+<main class="lab">
+  <section class="lab-hero">
+    <p class="kicker">Under load</p>
+    <h2 class="display-lg">Rebuilt from the drawings. Loaded by you.</h2>
+    <p class="lede">Each bridge here is a structural model built from its Historic American Engineering Record drawings or its
+      chief engineer's report. Every member size is tagged stated, measured or assumed. The arithmetic runs in this page as you
+      move the load.</p>
+    <div class="progress" aria-label="Bridges">
+      <p class="progress__count"><b id="doneCount">–</b> of 20 bridges modelled · pick one</p>
+      <ol class="progress__list" id="progressList"></ol>
+    </div>
+  </section>
+
+  <div id="bench"></div>
+
+  <footer class="lab-foot">
+    <p>Models: plane pin-jointed truss by direct stiffness for the trusses; Melan deflection theory for one cable and its stiffening
+      truss for the suspension spans. Live loads are AASHTO H-trucks, a 100 lb/ft² crowd, and the 4,000 lb/ft design load from the engineers' own reports.
+      These are teaching models built from public records, not load ratings. The owner agency's inspection and rating are authoritative.</p>
+  </footer>
+</main>
+
+<script src="bridges/solver.js"></script>
+<script src="bridges/bridges.js"></script>
+</body>
+</html>

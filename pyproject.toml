@@ -1,0 +1,37 @@
+[project]
+name = "bridgewatch"
+version = "2.0.0"
+description = "Condition risk, posting risk, inspection-interval screening and budget planning for every US bridge in the National Bridge Inventory"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = [
+    "duckdb>=1.5.6",
+    "numpy>=2.5.4",
+    "polars>=2.0.0",
+    "pyarrow>=26.0.0",
+    "scikit-learn>=1.9.1",
+]
+
+[project.scripts]
+bridgewatch = "bridgewatch.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 140
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "RUF"]
+ignore = ["RUF001"]  # en dashes and other typography in report text are intentional
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "playwright>=1.64.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]

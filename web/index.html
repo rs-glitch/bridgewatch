@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BridgeWatch</title>
+<meta name="description" content="Every bridge in the US National Bridge Inventory, read as one landscape, with a tested forecast of which ones become Poor next.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23F2DCCB'/><path d='M5 21h22M7 21l4-7h10l4 7M11 14v7M16 14v7M21 14v7' stroke='%232E2230' stroke-width='1.6' fill='none'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Michroma&display=swap">
+<link rel="stylesheet" href="sc/scrollcraft.css">
+<link rel="stylesheet" href="intro/intro.css">
+</head>
+<body>
+
+<div class="sc-grain" aria-hidden="true"></div>
+
+<!-- The world: one fixed stage for the whole page. Nothing scrolls over it. -->
+<div class="world" id="world" aria-hidden="true" data-sc-verify-state="">
+  <div class="sky"><div class="sun"></div></div>
+  <div class="ground" id="ground"></div>
+  <img class="truss" id="truss" src="intro/hpl-elevation.png" alt="" width="3600" height="485"
+       srcset="intro/hpl-elevation-m.png 1800w, intro/hpl-elevation.png 3600w" sizes="(max-width: 700px) 160vw, 92vw">
+  <div class="haze" id="haze"></div>
+  <canvas class="dust" id="dust"></canvas>
+</div>
+
+<a class="mark" href="#top" aria-label="BridgeWatch, back to the start">BridgeWatch</a>
+
+<!-- The nav is the route: waypoints, clickable. -->
+<nav class="route" aria-label="Waypoints">
+  <ol>
+    <li><a href="#horizon" data-wp="0">Horizon</a></li>
+    <li><a href="#grains" data-wp="1">Every bridge</a></li>
+    <li><a href="#condition" data-wp="2">Condition</a></li>
+    <li><a href="#question" data-wp="3">Question</a></li>
+    <li><a href="#forecast" data-wp="4">Forecast <span class="route__year" id="routeYear">2025</span></a></li>
+    <li><a href="#proof" data-wp="5">Proof</a></li>
+    <li><a href="#landing" data-wp="6">Landing</a></li>
+  </ol>
+</nav>
+
+<main id="top">
+  <!-- Waypoints. Each section is an empty scroll marker; its copy is held in the fixed layer. -->
+  <section class="wp" id="horizon" data-sc-act="flow" data-wp-span="1.4">
+    <div class="cp cp--hero" data-sc-cue="0 0.76 0 0.1">
+      <h1 class="display display--hero" data-sc-kinetic="lines">Every bridge in America, read as one landscape.</h1>
+      <p class="lede">BridgeWatch turns 34 years of federal inspections into a tested forecast of which bridges fail next.</p>
+      <a class="cta" href="map.html">Open the map</a>
+    </div>
+  </section>
+
+  <section class="wp" id="grains" data-sc-act="flow" data-wp-span="1.4">
+    <div class="cp cp--trail" data-sc-cue="0.32 0.92 0.06 0.08">
+      <p class="display display--figure"><span data-sc-count="0 623,611" data-sc-count-at="0.3 0.44">623,611</span> bridges.</p>
+      <p class="lede">Each grain is one of them, from interstate viaducts to county culverts. Inspectors rate every one, most of them every two years.</p>
+    </div>
+  </section>
+
+  <section class="wp" id="condition" data-sc-act="flow" data-wp-span="1.3">
+    <div class="cp cp--lead" data-sc-cue="0.44 0.92 0.08 0.08">
+      <h2 class="display display--md">41,651 are rated Poor today.</h2>
+      <ul class="legend" aria-label="Condition in 2025">
+        <li><i class="dot dot--good"></i>Good <span>272,507</span></li>
+        <li><i class="dot dot--fair"></i>Fair <span>309,453</span></li>
+        <li><i class="dot dot--poor"></i>Poor <span>41,651</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wp" id="question" data-sc-act="flow" data-wp-span="0.8">
+    <div class="cp cp--center" data-sc-cue="0.58 0.94 0.1 0.08">
+      <p class="display display--quiet">Which ones are next?</p>
+    </div>
+  </section>
+
+  <section class="wp" id="forecast" data-sc-act="flow" data-wp-span="2.6">
+    <div class="cp cp--year" data-sc-cue="0.3 0.985 0.04 0.03">
+      <p class="year" aria-live="off"><span id="year">2025</span></p>
+    </div>
+    <div class="cp cp--lead" data-sc-cue="0.34 0.985 0.06 0.03">
+      <h2 class="display display--sm">By 2029, about 17,000 more are expected to become Poor.</h2>
+      <ul class="legend legend--embers" aria-label="Forecast risk bands">
+        <li><i class="dot dot--ember"></i>Above 25% risk <span>12,118</span></li>
+        <li><i class="dot dot--ember-soft"></i>10% to 25% <span>36,544</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wp" id="proof" data-sc-act="flow" data-wp-span="1.2">
+    <div class="plate plate--proof" data-plate-for="proofCopy" aria-hidden="true"></div>
+    <div class="cp cp--trail cp--proof" id="proofCopy" data-sc-cue="0.48 0.93 0.08 0.08">
+      <h2 class="display display--sm">Tested on years that already happened.</h2>
+      <p class="lede">Shown only what was known in 2021, the riskiest 1% it named became Poor by 2025 30.2% of the time. The best existing method managed 24.3%.</p>
+    </div>
+  </section>
+
+  <section class="wp" id="landing" data-sc-act="flow" data-wp-span="1.6">
+    <div class="cp cp--land" id="landCard" data-sc-cue="0.36">
+      <img class="land__drawing" src="intro/hpl-elevation-m.png" alt="1931 elevation drawing of the Huey P. Long Bridge" width="1800" height="242">
+      <h2 class="display display--sm">Huey P. Long Bridge</h2>
+      <p class="land__facts">US 90 over the Mississippi · built 1936 · rated Fair</p>
+      <a class="cta" href="map.html">Open the map</a>
+      <a class="land__also" href="bridges.html">Or load a bridge yourself</a>
+    </div>
+    <footer class="cp cp--foot" data-sc-cue="0.36">
+      <p>Data: FHWA National Bridge Inventory, 1992 to 2025. Drawing: HAER LA-17, Library of Congress. A screening forecast from public data, not an engineering assessment.</p>
+    </footer>
+  </section>
+</main>
+
+<script src="https://unpkg.com/deck.gl@9.4.0/dist.min.js"></script>
+<script src="sc/scrollcraft.js"></script>
+<script src="intro/intro.js"></script>
+</body>
+</html>

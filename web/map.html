@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BridgeWatch Map</title>
+<meta name="description" content="Condition risk, weight-limit risk, inspection-interval screening and budget planning for every bridge in the US National Bridge Inventory.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23F2DCCB'/><path d='M5 21h22M7 21l4-7h10l4 7M11 14v7M16 14v7M21 14v7' stroke='%232E2230' stroke-width='1.6' fill='none'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Michroma&display=swap">
+<link rel="stylesheet" href="basemap/maplibre-gl.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="mark" aria-hidden="true"></span>
+    <div>
+      <h1><a href="index.html" class="home">BridgeWatch</a></h1>
+      <p class="sub">Condition risk and repair planning for every US bridge · FHWA National Bridge Inventory 1992–2025</p>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="map" aria-selected="true">Map</button>
+    <button role="tab" data-tab="list">Risk list</button>
+    <button role="tab" data-tab="plan">Budget planner</button>
+    <button role="tab" data-tab="interval">Inspection intervals</button>
+    <button role="tab" data-tab="right">Was it right?</button>
+    <button role="tab" data-tab="method">Method</button>
+    <a class="tabs__out" href="bridges.html">Bridges under load</a>
+  </nav>
+</header>
+
+<main>
+  <section id="tab-map" class="tab active">
+    <aside class="controls">
+      <label>Colour bridges by
+        <select id="colorBy">
+          <option value="cond">Condition today</option>
+          <option value="q1">Risk of becoming Poor within 4 years</option>
+          <option value="q3">Risk of a weight limit or closure within 4 years</option>
+          <option value="flag">Posted or closed today</option>
+        </select>
+      </label>
+      <label>Jump to state <select id="mapState" class="state-select"></select></label>
+      <div id="legend" class="legend"></div>
+      <div id="mapStats" class="stats"></div>
+      <p class="fine">Click a bridge for its history and risks. Risk = share of similar bridges that had the event in backtests;
+        it is a screening estimate from public data, not an engineering assessment.</p>
+    </aside>
+    <div id="map" class="map" aria-label="Map of US bridges"></div>
+    <aside id="detail" class="detail" hidden></aside>
+  </section>
+
+  <section id="tab-list" class="tab">
+    <div class="toolbar">
+      <label>State <select id="listState" class="state-select"></select></label>
+      <label>Rank by
+        <select id="listMetric">
+          <option value="p_poor_4y">Risk of becoming Poor (4 yr)</option>
+          <option value="p_restricted_4y">Risk of weight limit or closure (4 yr)</option>
+          <option value="value_per_dollar">Expected user cost avoided per $ of treatment</option>
+          <option value="detour_cost_day">Detour cost per day if closed</option>
+        </select>
+      </label>
+      <label>Owner
+        <select id="listOwner"><option value="">All</option><option value="1">State highway agency</option>
+          <option value="2">County</option><option value="4">City / town</option></select>
+      </label>
+      <label>Min. traffic (veh/day) <input id="listAdt" type="number" min="0" step="50" value="0"></label>
+    </div>
+    <div id="listSummary" class="stats"></div>
+    <div class="table-wrap"><table id="listTable"></table></div>
+  </section>
+
+  <section id="tab-plan" class="tab">
+    <div class="toolbar">
+      <label>State <select id="planState" class="state-select"></select></label>
+      <label>Budget <input id="planBudget" type="range" min="0" max="100" value="45"> <output id="planBudgetOut"></output></label>
+      <label>Strategy
+        <select id="planStrategy">
+          <option value="value_per_dollar">Most user cost avoided per $ (BridgeWatch)</option>
+          <option value="worst_first">Worst condition first</option>
+          <option value="traffic_first">Highest traffic first</option>
+          <option value="risk_first">Highest risk first</option>
+        </select>
+      </label>
+    </div>
+    <div id="planSummary" class="cards"></div>
+    <div class="two">
+      <div><h3>Treated bridges (first 100)</h3><div class="table-wrap"><table id="planTable"></table></div></div>
+      <div>
+        <h3>Backtest: decide with 2017 data, check 2018–2021</h3>
+        <div id="planBacktest" class="table-wrap"></div>
+        <h3>Closure candidates</h3>
+        <p class="fine">Open bridges whose replacement costs more than 20 years of detour user cost. A screen for discussion, never selected automatically.</p>
+        <div class="table-wrap"><table id="closeTable"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-interval" class="tab">
+    <div class="toolbar"><label>State <select id="intState" class="state-select"></select></label></div>
+    <div id="intSummary" class="cards"></div>
+    <div class="two">
+      <div><h3>How often did a 48-month interval go wrong? (backtest)</h3><div id="intBacktest" class="table-wrap"></div>
+        <p class="fine">A miss = within 4 years the bridge became Poor, was posted or closed, or a component dropped 2+ points.
+        Method 1 is our encoding of 23 CFR 650.311 criteria. Interval decisions belong to the bridge owner.</p></div>
+      <div><h3>Method 1-eligible bridges the model flags as higher risk</h3><div class="table-wrap"><table id="intTable"></table></div></div>
+    </div>
+  </section>
+
+  <section id="tab-right" class="tab">
+    <div class="toolbar">
+      <label>Question
+        <select id="rightTarget"><option value="poor">Becomes Poor</option><option value="restricted">Weight limit or closure</option></select>
+      </label>
+      <label>Horizon <select id="rightH"><option>2</option><option selected>4</option><option>8</option></select></label>
+      <label>States <select id="rightSplit"><option value="seen_states">Seen in training</option><option value="holdout_states">Held out (IA, TX, PA, CA, GA)</option></select></label>
+    </div>
+    <div id="rightTables"></div>
+    <div id="rightReliability" class="chart"></div>
+  </section>
+
+  <section id="tab-method" class="tab prose">
+    <h2>How BridgeWatch works</h2>
+    <p><strong>Data.</strong> Every annual FHWA National Bridge Inventory file from 1992 to 2025 (34 years, all states, DC and
+      Puerto Rico; record type 1 only). 2025 is the last year in the 1995 Coding Guide format.</p>
+    <p><strong>One history per bridge.</strong> Several states renumbered most of their bridges in a single year. BridgeWatch links
+      old and new IDs by padding-only changes, by an identical physical description, or by location within 50 m, and refuses
+      links to structures built in the transition year (replacements). This cut year-to-year ID breaks from 2.2% to 1.1%.</p>
+    <p><strong>Questions.</strong> Q1: will this bridge become Poor (lowest of deck, superstructure, substructure, culvert ≤ 4)?
+      Q3: will an open bridge be posted for load, restricted or closed? Q4: is a bridge on a 24-month cycle low-risk enough for 48
+      months? Q2: with a budget, which bridges first?</p>
+    <p><strong>Models.</strong> Gradient-boosted trees on features from each bridge's own past only (ratings, trends, age, traffic,
+      material, design, load rating, scour, inspection interval, location). Risk cannot fall as a rating gets worse. Every claim is
+      checked against baselines in a time-split backtest: "rating stays the same" (worst-first), time-in-condition, and a Markov
+      chain like those used in agency asset-management tools.</p>
+    <p><strong>Costs.</strong> FHWA 2025 bridge replacement unit costs by state and system; rehabilitation = 68% of replacement (FHWA's
+      own assumption). Detour cost uses federal benefit-cost values for vehicle operating cost and travel time, at an assumed 40 mph.</p>
+    <p><strong>Limits.</strong> Ratings are visual and vary between inspectors. Repairs are not recorded in the NBI and are inferred.
+      The planner measures targeting, not whether a treatment would have prevented an event. Nothing here is an engineering
+      assessment of a specific bridge; the owner agency's inspection and posting are authoritative.</p>
+  </section>
+</main>
+
+<script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/deck.gl@9.4.0/dist.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
