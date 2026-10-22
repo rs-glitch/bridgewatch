@@ -142,6 +142,31 @@ packages the site for single-page hosting (inline CSS, point file as base64 text
 |---|---|---|
 | ![Map](docs/screenshot-map.png) | ![Detail](docs/screenshot-detail.png) | ![Planner](docs/screenshot-plan.png) |
 
+## Bridges under load
+
+`web/bridges.html` rebuilds 11 historic bridges (of a target set of 20) from their Historic American Engineering Record drawings
+and their engineers' reports, then solves them in the page as the visitor moves the load. Every member size is tagged stated,
+measured or assumed.
+
+- **8 trusses** (Kelley Crossing, Bridge L5245, Walnut Street, Slate Run, Nicholson, Old Corinth Road, Whetstone Creek, Cooper's
+  tubular arch): a plane pin-jointed truss by direct stiffness, with rods that can only pull. Drag an H-truck across or add a
+  crowd; members are coloured by share of yield.
+- **3 suspension spans** (Golden Gate, George Washington, Tacoma Narrows 1940): Melan deflection theory for the cable and its
+  stiffening truss, including the side-span cables. Each is checked against the deflections the engineers published, with Show
+  buttons for the loading behind each figure.
+
+```bash
+uv run bridgewatch sim   # writes web/data/tier2/ and reports/sim.md; needs no NBI download
+```
+
+The same solver runs in Python (`src/bridgewatch/sim/`) and in the browser (`web/bridges/solver.js`); `tests/test_sim_js.py`
+checks they agree. These are teaching models built from public records, not load ratings. Sources, selection rules and the
+validation table are in [TIER2.md](TIER2.md).
+
+| A truss: Kelley Crossing | A suspension span: Golden Gate |
+|---|---|
+| ![Kelley Crossing](docs/screenshot-bridges.png) | ![Golden Gate](docs/screenshot-span.png) |
+
 ## Quick start
 
 ```bash
